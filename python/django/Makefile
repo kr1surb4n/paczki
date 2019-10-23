@@ -27,6 +27,25 @@ export PRINT_HELP_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
+dm-runserver:
+	python manage.py runserver
+
+dm-test:
+	python manage.py test $(TEST)
+
+dm-migrate:
+	python manage.py migrate
+
+dm-makemigrations:
+	python manage.py makemigrations $(APP)
+
+dm-startapp:
+	python manage.py startapp $(APP)
+
+dm-startproject:
+	django-admin startproject $(PROJECT)
+
+
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
@@ -117,7 +136,7 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 virtualenv:
-	virtualenv --prompt '|> happy_repo <| ' .venv
+	virtualenv --prompt '|> snippets-api <| ' .venv
 	.venv/bin/pip install -r requirements_dev.txt
 	.venv/bin/python setup.py develop
 	@echo

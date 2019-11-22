@@ -27,6 +27,9 @@ export PRINT_HELP_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
+APP_NAME = happy_repo
+
+
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
@@ -58,7 +61,7 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 check_code:
-	pycodestyle ./happy_repo/*
+	pycodestyle ./$(APP_NAME)/*
 	pycodestyle ./tests/*
 
 dist: clean
@@ -70,28 +73,28 @@ dist-upload:
 	twine upload dist/*
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/paczekfiller.rst
+	rm -f docs/$(APP_NAME).rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ paczekfiller
+	sphinx-apidoc -o docs/ $(APP_NAME)
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
 
 document:
-	pycco -spi -d docs/literate happy_repo/*
+	pycco -spi -d docs/literate $(APP_NAME)/*
 
 docker: clean
-	docker build -t happy_repo:latest .
+	docker build -t $(APP_NAME):latest .
 
 format_code:
-	autopep8 -i -r -aaa ./happy_repo/*
+	autopep8 -i -r -aaa ./$(APP_NAME)/*
 	autopep8 -i -r -aaa ./tests/*
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
 lint: ## check style with flake8
-	flake8 paczekfiller tests
+	flake8 $(APP_NAME) tests
 
 requirements:
 	.venv/bin/pip freeze --local > requirements.txt
@@ -101,9 +104,6 @@ servedocs: docs ## compile the docs watching for changes
 
 set-origin:
 	git remote add git@localhost:$(NAME).git
-
-set-heaven:
-	git remote add git@whereibend.space:/repository/$(NAME).git
 
 test:
 	python -m pytest \
@@ -117,7 +117,7 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 virtualenv:
-	virtualenv --prompt '|> happy_repo <| ' .venv
+	virtualenv --prompt '|> $(APP_NAME) <| ' .venv
 	.venv/bin/pip install -r requirements_dev.txt
 	.venv/bin/python setup.py develop
 	@echo

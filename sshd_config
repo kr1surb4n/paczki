@@ -23,8 +23,11 @@ ListenAddress ::
 #RekeyLimit default none
 
 # Logging
-#SyslogFacility AUTH
-#LogLevel INFO
+
+## change log level
+SyslogFacility AUTH
+LogLevel INFO
+
 
 # Authentication:
 
@@ -34,7 +37,7 @@ ListenAddress ::
 #MaxAuthTries 6
 #MaxSessions 10
 
-PubkeyAuthentication yes
+PubkeyAuthentication no
 
 # Expect .ssh/authorized_keys2 to be disregarded by default in future.
 #AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
@@ -53,12 +56,12 @@ PubkeyAuthentication yes
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-#PasswordAuthentication yes
-#PermitEmptyPasswords no
+PasswordAuthentication yes
+PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
-ChallengeResponseAuthentication no
+ChallengeResponseAuthentication yes
 
 # Kerberos options
 #KerberosAuthentication no
@@ -86,7 +89,7 @@ UsePAM yes
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
-X11Forwarding yes
+X11Forwarding no
 #X11DisplayOffset 10
 #X11UseLocalhost yes
 #PermitTTY yes

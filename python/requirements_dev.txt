@@ -1,5 +1,6 @@
 -r requirements.txt
 
+python-dotenv
 pip
 bump2version
 wheel
@@ -10,14 +11,24 @@ coverage
 Sphinx
 twine
 setuptools
-autopep8
+black
 pycco
 pycodestyle
+pylama
 
 pytest
 pytest-runner
 pyflakes
 pylint
+ptw
 factory-boy
 # sudo python3 -m easy_install clonedigger
+
+mccabe
+
+bandit
+
+autoflake
+isort
+mypy
 

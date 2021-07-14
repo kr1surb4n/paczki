@@ -16,11 +16,16 @@ pycco
 pycodestyle
 pylama
 
+
+argh
+colorama
+
+behave
 pytest
 pytest-runner
 pyflakes
 pylint
-ptw
+pytest-watch
 factory-boy
 # sudo python3 -m easy_install clonedigger
 

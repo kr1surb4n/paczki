@@ -1,0 +1,11 @@
+[user]
+	name = FULL NAME
+	email = your@email.com
+[core]
+	autocrlf = input
+[push]
+	default = simple
+[cola]
+	spellcheck = false
+[commit]
+	template = ~/.gitmessage

@@ -1,0 +1,53 @@
+#!/bin/bash
+
+function sail  {  # either run sail or be an alias
+        ./vendor/bin/sail $@
+}
+
+function clear_all {
+    sail artisan config:clear
+    sail artisan optimize
+    sail artisan route:cache
+    sail artisan view:cache
+    sail artisan ziggy:generate
+    sail artisan twill:update
+}
+
+function clear_all_php  {
+    php artisan config:clear
+    php artisan optimize
+    php artisan route:cache
+    php artisan view:cache
+    php artisan ziggy:generate
+}
+
+
+function push_tags { # all, a bit desctruction
+        git push --tags -f
+}
+
+function update_master {
+        git switch master 
+        git pull origin
+}
+
+function sail_twill_update {
+        sail artisan twill:update
+}
+
+function test_aok {
+    sail artisan config:clear   # before running tests you have to clear the cache, but not rebuild it  
+    watchmedo shell-command -W --patterns="*.php" --recursive --command="./vendor/bin/sail test --filter {AOKTest}" .
+}
+
+function test_php {
+    sail artisan config:clear   # before running tests you have to clear the cache, but not rebuild it
+    watchmedo shell-command -W --patterns="*.php" --recursive --command='./vendor/bin/sail test' .
+}
+
+function test_class {
+    sail artisan config:clear   # before running tests you have to clear the cache, but not rebuild it  
+    watchmedo shell-command -W --patterns="*.php" --recursive --command="./vendor/bin/sail test --filter {${@}}" .
+}
+
+"$@"

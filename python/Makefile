@@ -1,5 +1,9 @@
 .PHONY: clean clean-build clean-pyc clean-test coverage check_code dist dist-upload docs document docker format_code install lint requirements servedocs test test-all virtualenv
 
+ifndef VERBOSE
+MAKEFLAGS += --no-print-directory
+endif
+
 APP_NAME = app-name
 
 TEST_FOLDERS = tests
@@ -49,9 +53,13 @@ coverage: ## check code coverage quickly with the default Python
 	coverage run --source=$(COVERAGE_PATHS) -m pytest
 	coverage report -m
 	
-check_code:
-	pycodestyle $(CODE_PATHS)
-	
+check: 	fmt mypy flake check-code lint
+
+check-code:
+	find . -name "*.py" -not -path "*.venv*" | xargs -I {} pycodestyle {} 
+
+check-watch:
+	watchmedo shell-command -i '*.venv*' -p '*.py' -c '$(MAKE) --no-print-directory check-code' -R -D .
 
 dist: clean
 	rm -rf dist/*

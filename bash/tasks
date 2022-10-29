@@ -20,7 +20,7 @@ function shortlist { # of functions inside this script, for autocomplete
    echo help 
 }
 
-function pwd {
+function mypath {
    pwd
 }
 

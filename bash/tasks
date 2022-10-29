@@ -12,7 +12,10 @@ if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
     exit
 fi
 
+# now you can link this file and all the commands you run
+# will think that are in separate folders
 cd "$(dirname "$0")"
+
 
 PATH=
 

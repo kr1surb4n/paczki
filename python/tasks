@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+
+function hello_python {
+   echo "I will be for python"
+}
+
+AUTOCOMPLETE_WORDS="hello_python "
+
+source ~/.coat/lib/paczki/bash/tasks

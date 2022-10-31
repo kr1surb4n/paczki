@@ -3,6 +3,7 @@
 set -o errexit
 set -o nounset
 set -o pipefail
+
 if [[ "${TRACE-0}" == "1" ]]; then
     set -o xtrace
 fi
@@ -16,11 +17,12 @@ fi
 # will think that are in separate folders
 cd "$(dirname "$0")"
 
-
+AUTOCOMPLETE_WORDS="${AUTOCOMPLETE_WORDS:-} mypath"
 PATH=
 
+
 function shortlist { # of functions inside this script, for autocomplete
-   echo help 
+   echo $AUTOCOMPLETE_WORDS
 }
 
 function mypath {

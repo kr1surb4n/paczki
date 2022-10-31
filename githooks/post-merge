@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo kocie merge!
+
+process_input() {
+  echo $1  # the filename
+}
+
+git diff @{1} @ --diff-filter=AM --name-only | while read one_input; do process_input "${one_input}"; done

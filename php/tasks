@@ -50,4 +50,6 @@ function test_class {
     watchmedo shell-command -W --patterns="*.php" --recursive --command="./vendor/bin/sail test --filter {${@}}" .
 }
 
-"$@"
+AUTOCOMPLETE_WORDS="hello_python "
+
+source $PACZEK_FILLINGS/bash/tasks

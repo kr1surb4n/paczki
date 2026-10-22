@@ -20,9 +20,14 @@ cd "$(dirname "$0")"
 AUTOCOMPLETE_WORDS="${AUTOCOMPLETE_WORDS:-} mypath"
 PATH=
 
-
-function shortlist { # of functions inside this script, for autocomplete
+### THIS FUNCTION WILL BECOME RESPONSIBLE FOR AUTOCOMPLETE - REMOVE IF YOU JUST START USING IT
+function autocomplete-list { # of functions inside this script, for autocomplete
    echo $AUTOCOMPLETE_WORDS
+}
+
+### DEPRECATED - DO NOT USE - IF YOU'RE NEVER USED THIS FILE, REMOVE THIS FUNCTION AND THIS COMMENT
+function shortlist { # of functions inside this script, for autocomplete
+   exit 0
 }
 
 function mypath {

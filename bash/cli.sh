@@ -16,7 +16,10 @@ This is an awesome bash script to make your life better.
     exit
 fi
 
+# now you can link this file and all the commands you run
+# will think that are in separate folders
 cd "$(dirname "$0")"
+
 
 main() {
     echo do awesome stuff
